@@ -1,5 +1,6 @@
 package com.ehcachespringprework.service;
 
+import com.ehcachespringprework.dto.PersonsDTO;
 import com.ehcachespringprework.model.Persons;
 import com.ehcachespringprework.repository.PersonsRepo;
 import lombok.RequiredArgsConstructor;
@@ -30,5 +31,12 @@ public class PersonService {
     public Persons getPersonById(long id) {
         System.out.println("here because not cached");
         return personsRepo.findAll().get(0);
+    }
+
+    public Persons getPersonByIdNotCached(long id) {
+        return personsRepo.findById(id).orElseThrow();
+    }
+    public PersonsDTO findAllPersonsWithDepartmentInfo(long id) {
+        return personsRepo.findPersonWithDepartmentInfo(id);
     }
 }

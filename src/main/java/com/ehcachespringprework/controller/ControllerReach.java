@@ -42,4 +42,14 @@ public class ControllerReach {
         var result = personService.getPersonById(id);
         return ResponseEntity.ok(result);
     }
+    @GetMapping(path = "/getPersonByIdNotCached/{id}")
+    public ResponseEntity<?> getPersonByIdNotCached(@PathVariable int id) {
+        var result = personService.getPersonByIdNotCached(id);
+        return ResponseEntity.ok(result);
+    }
+    @GetMapping(path = "/findAllPersonsWithDepartmentInfo/{id}")
+    public ResponseEntity<?> findAllPersonsWithDepartmentInfo(@PathVariable long id) {
+        var result = personService.findAllPersonsWithDepartmentInfo(id);
+        return ResponseEntity.ok(result);
+    }
 }
