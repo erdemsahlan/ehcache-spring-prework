@@ -1,6 +1,7 @@
 package com.ehcachespringprework.service;
 
 import com.ehcachespringprework.dto.PersonsDTO;
+import com.ehcachespringprework.model.Departments;
 import com.ehcachespringprework.model.Persons;
 import com.ehcachespringprework.repository.PersonsRepo;
 import lombok.RequiredArgsConstructor;
@@ -33,9 +34,18 @@ public class PersonService {
         return personsRepo.findAll().get(0);
     }
 
+    public boolean update(long id) {
+        Persons persons = personsRepo.findById(id).orElse(null);
+        persons.setDepartment( Departments.builder().id(2).build());
+        personsRepo.save(persons);
+        return true;
+    }
+
+
     public Persons getPersonByIdNotCached(long id) {
         return personsRepo.findById(id).orElseThrow();
     }
+
     public PersonsDTO findAllPersonsWithDepartmentInfo(long id) {
         return personsRepo.findPersonWithDepartmentInfo(id);
     }
